@@ -43,20 +43,17 @@ def calculate():
         display.insert(0, "Error!")
         
 def openfileR():
-    f=open("Readme2", "r")
-    for line in f:
-        name = line[0:3]
-        listbox1.insert(END, name)
+    f=open("Readme2.txt", "r")
     f.close()
 
 
 def openfileW():
-    f = open("Readme2", "w")
-    names = listbox1.get(0, END)
-    for i in names:
-        f.write(i+"\n")
+    f = open("Readme2.txt", "w")
     f.close()
 
+def generate():
+    while(1):
+        print "hello"
 
 display = Entry(root)
 display.grid(row = 1, columnspan = 6)
@@ -114,8 +111,8 @@ percent = Button(root, text = "%", command = lambda :  get_operation("%"))
 percent.grid(row = 5, column = 2)
 
 
-eh = Button(root, text = "^2", command = lambda :  get_operation("**2"))
-eh.grid(row = 2, column = 4)
+ex = Button(root, text = "^2", command = lambda :  get_operation("**2"))
+ex.grid(row = 2, column = 4)
 
 
 menubar = Menu(root)

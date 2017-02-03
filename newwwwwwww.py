@@ -46,20 +46,6 @@ def calculate():
         clear_all()
         display.insert(0, "Error!")
         
-def openfileR():
-    f=open("Readme2", "r")
-    for line in f:
-        name = line[0:3]
-        listbox1.insert(END, name)
-    f.close()
-
-
-def openfileW():
-    f = open("Readme2", "w")
-    names = listbox1.get(0, END)
-    for i in names:
-        f.write(i+"\n")
-    f.close()
     
 def file_save():
     f = tkFileDialog.asksaveasfile(mode='w', defaultextension=".txt")
@@ -67,6 +53,13 @@ def file_save():
         return
     text2save = str(text.get(1.0, END)) 
     f.write(text2save)
+    f.close() 
+    
+def file_open():
+    f = tkFileDialog.askopenfile(mode='r', defaultextension=".txt")
+    if f is None: 
+        return
+    text2save = str(text.get(1.0, END)) 
     f.close() 
 
 def save(self):
@@ -76,6 +69,9 @@ def save(self):
     total =str(text_box)
     f.write(total)
     f.close()
+    
+def askopenfile(self):
+    return tkFileDialog.askopenfile(mode='r', **self.file_opt)
 
 text=Text(root)
 
@@ -139,9 +135,11 @@ eh = Button(root, text = "^2", command = lambda :  get_operation("**2"))
 eh.grid(row = 2, column = 4)
 
 
+
+
 menubar = Menu(root)
 filemenu =Menu(menubar, tearoff=0)
-filemenu.add_command(label="Open", command=save)
+filemenu.add_command(label="Open", command=file_open)
 filemenu.add_separator()
 filemenu.add_command(label="Save", command=file_save)
 menubar.add_cascade(label="File", menu=filemenu)
